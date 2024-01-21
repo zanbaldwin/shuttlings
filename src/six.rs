@@ -1,6 +1,7 @@
+use crate::AppState;
 use axum::{routing::post, Json, Router};
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new().route("/", post(count))
 }
 

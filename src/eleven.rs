@@ -1,3 +1,4 @@
+use crate::AppState;
 use axum::{
     body::Bytes,
     extract::multipart::Multipart,
@@ -8,9 +9,9 @@ use axum::{
 };
 use image::{GenericImageView, Pixel};
 
-const DECORATION_IMAGE: &'static [u8] = include_bytes!("../assets/11-decoration.png");
+const DECORATION_IMAGE: &[u8] = include_bytes!("../assets/11-decoration.png");
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new()
         .route("/assets/decoration.png", get(image))
         .route("/red_pixels", post(red_pixels))

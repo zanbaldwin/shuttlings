@@ -1,6 +1,7 @@
+use crate::AppState;
 use axum::{http::StatusCode, routing::get, Router};
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new()
         .route("/", get(hello_world))
         .route("/-1/error", get(server_error))

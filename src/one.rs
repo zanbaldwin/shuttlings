@@ -1,9 +1,10 @@
+use crate::AppState;
 use axum::extract::Path;
 use axum::response::{IntoResponse, Response};
 use axum::routing::get;
 use axum::Router;
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new().route("/*nums", get(xor_pow3))
 }
 

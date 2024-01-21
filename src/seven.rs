@@ -1,3 +1,4 @@
+use crate::AppState;
 use axum::{
     http::HeaderMap,
     response::{IntoResponse, Response},
@@ -7,7 +8,7 @@ use axum::{
 use base64::prelude::*;
 use std::collections::HashMap;
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new()
         .route("/decode", get(decode))
         .route("/bake", get(bake))

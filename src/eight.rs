@@ -1,3 +1,4 @@
+use crate::AppState;
 use axum::{
     extract::Path,
     http::StatusCode,
@@ -9,7 +10,7 @@ use axum::{
 const GRAVATATIONAL_CONSTANT_EARTH: f64 = 9.825;
 const DROP_HEIGHT: f64 = 10.0;
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new()
         .route("/weight/:pokemon_id", get(pokemon_weight))
         .route("/drop/:pokemon_id", get(drop_pokemon))

@@ -1,9 +1,9 @@
-use std::{cmp::min, collections::HashMap};
-
+use crate::AppState;
 use axum::{extract::Query, routing::post, Json, Router};
 use serde_json::Value;
+use std::{cmp::min, collections::HashMap};
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new().route("/", post(names))
 }
 

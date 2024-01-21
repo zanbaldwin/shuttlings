@@ -1,3 +1,4 @@
+use crate::AppState;
 use axum::extract::Json;
 use axum::response::{IntoResponse, Response};
 use axum::{routing::post, Router};
@@ -30,7 +31,7 @@ struct ContestResult {
     consumer: String,
 }
 
-pub fn router() -> Router {
+pub fn router() -> Router<AppState> {
     Router::new()
         .route("/strength", post(reindeer_strength))
         .route("/contest", post(reindeer_candy_contest))

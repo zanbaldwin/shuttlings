@@ -1,3 +1,9 @@
+use std::{
+    collections::HashMap,
+    sync::{Arc, Mutex},
+    time::SystemTime,
+};
+
 use axum::Router;
 
 mod eight;
@@ -8,6 +14,13 @@ mod minus_one;
 mod one;
 mod seven;
 mod six;
+mod twelve;
+
+type AppState = Arc<Mutex<State>>;
+#[derive(Default)]
+struct State {
+    pub twelve_packages: HashMap<String, SystemTime>,
+}
 
 #[shuttle_runtime::main]
 async fn main() -> shuttle_axum::ShuttleAxum {
@@ -19,7 +32,9 @@ async fn main() -> shuttle_axum::ShuttleAxum {
         .nest("/6", six::router())
         .nest("/7", seven::router())
         .nest("/8", eight::router())
-        .nest("/11", eleven::router());
+        .nest("/11", eleven::router())
+        .nest("/12", twelve::router())
+        .with_state(AppState::default());
 
     Ok(router.into())
 }
