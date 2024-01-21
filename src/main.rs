@@ -1,5 +1,6 @@
 use axum::Router;
 
+mod eight;
 mod five;
 mod four;
 mod minus_one;
@@ -15,7 +16,8 @@ async fn main() -> shuttle_axum::ShuttleAxum {
         .nest("/4", four::router())
         .nest("/5", five::router())
         .nest("/6", six::router())
-        .nest("/7", seven::router());
+        .nest("/7", seven::router())
+        .nest("/8", eight::router());
 
     Ok(router.into())
 }
