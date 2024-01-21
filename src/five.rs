@@ -11,7 +11,7 @@ async fn names(
     Query(params): Query<HashMap<String, usize>>,
     Json(names): Json<Vec<String>>,
 ) -> Json<Value> {
-    let offset = params.get("offset").unwrap_or(&0).clone();
+    let offset = *params.get("offset").unwrap_or(&0);
 
     let names = match params.get("limit") {
         Some(limit) => names[offset..min(names.len(), offset + limit)].to_vec(),

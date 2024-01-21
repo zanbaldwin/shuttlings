@@ -28,12 +28,11 @@ async fn count(body: String) -> Json<Result> {
     })
 }
 
-fn char_windows<'a>(src: &'a str, win_size: usize) -> impl Iterator<Item = &'a str> {
+fn char_windows(src: &str, win_size: usize) -> impl Iterator<Item = &str> {
     src.char_indices().flat_map(move |(from, _)| {
         src[from..]
             .char_indices()
-            .skip(win_size - 1)
-            .next()
+            .nth(win_size - 1)
             .map(|(to, c)| &src[from..from + to + c.len_utf8()])
     })
 }
