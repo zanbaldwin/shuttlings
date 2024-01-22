@@ -9,6 +9,7 @@ mod eight;
 mod eleven;
 mod five;
 mod four;
+mod fourteen;
 mod minus_one;
 mod one;
 mod seven;
@@ -36,6 +37,7 @@ async fn main() -> shuttle_axum::ShuttleAxum {
         .nest("/11", eleven::router())
         .nest("/12", twelve::router())
         .nest("/13", thirteen::router())
+        .nest("/14", fourteen::router())
         .with_state(AppState::default());
 
     Ok(router.into())
