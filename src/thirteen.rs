@@ -48,8 +48,8 @@ async fn total(State(state): State<AppState>) -> Response {
     let state = state.lock().unwrap();
     let total: u32 = state
         .thirteen_orders
-        .iter()
-        .map(|(_id, order)| order.quantity)
+        .values()
+        .map(|order| order.quantity)
         .sum();
     Json(json!({ "total": total})).into_response()
 }
